@@ -1,8 +1,9 @@
-﻿using BulkuWeb.Models;
+﻿using BulkyWeb.Models;
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace BulkuWeb.Controllers
+namespace BulkyWeb.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,6 +16,7 @@ namespace BulkuWeb.Controllers
 
         public IActionResult Index()
         {
+
             return View();
         }
 
