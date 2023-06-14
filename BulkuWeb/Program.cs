@@ -1,17 +1,13 @@
-using Bulky.DataAccess.Repository;
-using Bulky.DataAccess.Repository.IRepository;
-using BulkyWeb.DataAccess.Data;
+using BulkyWeb.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<BulkyWeb.DataAccess.Data.ApplicationdbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddDbContext<ApplicationdbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
-//builder.Services.AddScoped<ICategoryRepository,CategoryRepository>();
 
-builder.Services.AddScoped<IUnitOfwork,UnitofWork>();
 
 
 var app = builder.Build();
@@ -22,11 +18,7 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Home/Error");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
-  
-
 }
-app.UseDefaultFiles();
-IApplicationBuilder applicationBuilder = app.UseStaticFiles();
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
@@ -37,6 +29,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
