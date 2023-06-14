@@ -9,6 +9,16 @@
     <link rel="stylesheet" href="~/BulkuWeb.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css"/>
     <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"/>
+
+    @*Add Kendo UI Library File*@
+
+
+    <link rel="stylesheet" href="https://kendo.cdn.telerik.com/themes/6.4.0/default/default-main.css" />
+
+    <script src="https://kendo.cdn.telerik.com/2023.2.606/js/jquery.min.js"></script>
+    <script src="https://kendo.cdn.telerik.com/2023.2.606/js/kendo.all.min.js"></script>
+
+
 </head>
 <body>
     <header>
@@ -22,13 +32,28 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Category" asp-action="Index">Category</a>
+                            <a class="nav-link text-dark" asp-area="Customer" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                CONTENT MANAGEMENT
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                                </li>
+
+                                <li class="nav-item">
+                                    <a class="dropdown-item" asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                                </li>
+                               
+                                <li><hr class="dropdown-divider"></li>
+                               
+                            </ul>
                         </li>
                     </ul>
                 </div>
@@ -38,10 +63,11 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-        </main>
+          
+         </main>
     </div>
 
-    <footer class="border-top footer  bg-primary text-muted">
+    <footer class="border-top footer-bottom  bg-primary text-muted">
         <div class="container">
             &copy; 2023 - BulkuWeb - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

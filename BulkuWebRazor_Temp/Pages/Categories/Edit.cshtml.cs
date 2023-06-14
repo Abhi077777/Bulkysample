@@ -2,6 +2,7 @@ using BulkuWebRazor_Temp.Data;
 using BulkuWebRazor_Temp.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace BulkuWebRazor_Temp.Pages.Categories
@@ -42,7 +43,7 @@ namespace BulkuWebRazor_Temp.Pages.Categories
                 return Page();
             }
 
-            var existingCategory = _db.Categories.Find(Category.Id);
+            var existingCategory = _db.Categories.Find(Category?.Id);
 
             if (existingCategory == null)
             {
@@ -54,6 +55,7 @@ namespace BulkuWebRazor_Temp.Pages.Categories
             // Update other properties as needed
 
             _db.SaveChanges();
+            TempData["Success"] = "Category Updated Successfully";
 
             return RedirectToPage("Index");
         }
