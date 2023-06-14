@@ -10,7 +10,7 @@ namespace BulkuWebRazor_Temp.Pages.Categories
     {
         private readonly Applicationdbcontext _db;
 
-        public Category? Category { get; set; }
+        public Category Category { get; set; }
         public DeleteModel(Applicationdbcontext db)
         {
             _db = db;
@@ -27,13 +27,14 @@ namespace BulkuWebRazor_Temp.Pages.Categories
 
         public IActionResult OnPost()
         {
-            Category? obj = _db.Categories.Find(Category.Id);
+            Category obj = _db.Categories.Find(Category.Id);
             if(obj == null)
             {
                 return NotFound();
             }
             _db.Categories.Remove(obj);
             _db.SaveChanges();
+            TempData["Success"] = "Category Deleted Successfully";
             return RedirectToPage("Index");
             
         }
